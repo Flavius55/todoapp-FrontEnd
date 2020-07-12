@@ -1,0 +1,131 @@
+
+
+#upperBar{
+    width: 100vw;
+    height: 5vh;
+    background-color: rgb(212, 0, 255);
+}
+
+.infoBar{
+    width: 100vw;
+    height: 15vh;
+    background-color: rgb(218, 204, 221);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:rgb(212, 0, 255);
+    font-family: 'Andika';
+    font-size:20px;
+    font-weight: bold;
+}
+
+#addTodo{
+    width: 100vw;
+    height: 11vh;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+}
+
+#space{
+    width: 100vw;
+    height: 11vh;
+    /* background-color: red; */
+}
+
+.todo{
+    width: 100vw;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    color: rgb(212, 0, 255);
+    font-family: 'Andika';
+    font-size: 18px;
+}
+
+p{
+    max-width: 80vw;
+    float:left;
+    /* word-break: break-all; */
+    white-space: normal;
+    overflow: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+p::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.check{
+    width: 3vh;
+    height: 3vh;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 35%;
+    margin-left: 5vw;
+    margin-right: 10vw;
+}
+
+#newButton{
+    width: 10vh;
+    height: 10vh;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 50%;
+    background-color: white;
+    color:rgb(212, 0, 255);
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: none; */
+}
+#newButton2{
+    width: 10vh;
+    height: 10vh;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 50%;
+    background-color: rgb(212, 0, 255);
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 7vw; */
+    /* display: none; */
+}
+#newButton:hover{
+    background-color:rgb(212, 0, 255);
+    color: white;
+}
+#newButton2:hover{
+    background-color:white;
+    color: rgb(212, 0, 255);
+}
+
+#send{
+    width: 50vw;
+    height: 7vh;
+    text-align: center;
+    color:rgb(212, 0, 255);
+    font-family: 'Andika';
+    font-size: 18px;
+    display: none;
+    margin-right: 9vw;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 5px;
+}
+
+@media screen and (min-width:600px){
+    #todos{
+        width: 60vw;
+        margin-left: 20vw;
+    }
+    .todo{
+        width: 60vw;
+    }
+}

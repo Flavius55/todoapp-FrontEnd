@@ -1,0 +1,81 @@
+
+.container{
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    left:0px;
+    /* background-color: red; */
+}
+
+#bigtext{
+    width:65%;
+    margin-left: 17.5%;
+    margin-top: 30%;
+    font-size: 40px;
+    color:rgb(255, 123, 0);
+    text-align: left;
+    font-family: Impact, Charcoal, sans-serif;
+    
+}
+
+#aaa{
+    color: rgb(212, 0, 255);
+    font-family: Impact, Charcoal, sans-serif;
+
+    font-size:50px;
+    text-decoration: none;
+}
+
+#credits{
+    width: 40%;
+    margin-left: 27%;
+    margin-top:20%;
+    border: solid rgb(255, 123, 0) 5px;
+    color: rgb(255, 123, 0);
+    font-size: 25px;
+    font-family: Impact, Charcoal, sans-serif;;
+}
+
+@media screen and (min-width: 600px){
+    #bigtext{
+        width:25%;
+        margin-left: 45%;
+        margin-top: 20%;
+    }
+    #aaa{
+        font-size:40px;
+        text-decoration: none;
+    }
+    #credits{
+        margin-top:0px;
+        margin-left:0px;
+        position: absolute;
+        width: 30vw;
+        height: 50vh;
+        top:25vh;
+        left:5vw;
+        border: solid rgb(212, 0, 255) 5px;
+        color: rgb(212, 0, 255);
+    }
+    .wrap{
+        margin-top: 15%;
+        margin-left:35%;
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 900px){
+    #bigtext,#a{
+        font-size: 45px;
+    }
+    #credits{
+        font-size:35px;
+    }
+}
+
+@media screen and (max-height:800px){
+    #bigtext{
+        margin-top:15%;
+    }
+}
