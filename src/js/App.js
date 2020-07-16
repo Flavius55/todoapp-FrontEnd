@@ -12,7 +12,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false
+      isLogged: false,
+      // backDev:"http://localhost:5000/",
+      backDev:"https://todoappfr.herokuapp.com/"
     }
     this.setLoggedToTrue = this.setLoggedToTrue.bind(this);
     this.sendLoginData = this.sendLoginData.bind(this);
@@ -28,11 +30,12 @@ class App extends React.Component {
   }
   setLoggedToFalseOnly=() =>{
     this.setState({isLogged:false});
+    localStorage.clear();
   }
 
-  async sendTodo(send){
+  async sendTodo(send,backDev){
     if(send){
-        const response = await fetch("https://todoappfr.herokuapp.com/addtodo" , {
+        const response = await fetch(backDev+"addtodo" , {
             method:"POST",
             headers:{
                 'Content-Type':'application/json',
@@ -55,7 +58,7 @@ class App extends React.Component {
     if(r) return r;
     else{
       //comunicate with the server
-      const response = await fetch("https://todoappfr.herokuapp.com/login" , {
+      const response = await fetch(this.state.backDev+"login" , {
           method:"POST",
           headers:{
               'Content-Type':'application/json'
@@ -87,7 +90,7 @@ class App extends React.Component {
     if(r) return r;
       else{
         //comunicate with the server
-        const response = await fetch("https://todoappfr.herokuapp.com/register" , {
+        const response = await fetch(this.state.backDev+"register" , {
           method:"POST",
           headers:{
             'Content-Type':'application/json'
@@ -135,16 +138,19 @@ class App extends React.Component {
             request={this.sendLoginData}
             logMeIn={this.setLoggedToTrue}
             logMeOut={this.setLoggedToFalse}
+            backDev={this.state.backDev}
             />)}/>
             <Route exact path="/Register" render={(props)=>(<Register
             isLogged={this.state.isLogged}
             request={this.sendRegisterData}
+            backDev={this.state.backDev}
             />)}/>
             <Route exact path="/Dashboard" render={(props)=> (<Dashboard 
             {...props}
             isLogged={this.state.isLogged}
             sendTodo = {this.sendTodo}
             logMeOut = {this.setLoggedToFalseOnly}
+            backDev={this.state.backDev}
             // getTodos={this.getTodos}
             />)}/>
           </Switch>

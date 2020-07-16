@@ -20,15 +20,34 @@ class Dashboard extends React.Component {
     send(){
         let button = document.getElementById("newButton");
         let button2 = document.getElementById("newButton2");
+        let button3 = document.getElementById("doneButton");
+        let button4 = document.getElementById("backButton");
         button.style.display="none";
+        button3.style.display="none";
+        button4.style.display="none";
         button2.style.display="flex";
         let send = document.getElementById("send");
         send.style.display="flex";
     }
-
+    done(){
+        let button = document.getElementById("newButton");
+        let todos = document.getElementById("todos");
+        let dones = document.getElementById("todosDone")
+        button.style.display="none";
+        todos.style.display="none";
+        dones.style.display="block"
+    }
+    back(){
+        let button = document.getElementById("newButton");
+        let todos = document.getElementById("todos");
+        let dones = document.getElementById("todosDone")
+        button.style.display="flex";
+        todos.style.display="block";
+        dones.style.display="none"
+    }
     async componentDidMount(){
-        if(this.props.isLogged){
-            let json = await renderTodos();
+        if(localStorage.getItem("token")){
+            let json = await renderTodos(this.props.backDev);
             this.setState({
                 no:json.no,
                 username:json.username
@@ -38,11 +57,12 @@ class Dashboard extends React.Component {
             no.textContent=json.no+" tasks";
             name.textContent=json.username;
 
+            
         }
     }
 
     render(){
-        if(this.props.isLogged)
+        if(localStorage.getItem("token"))
         return(
         <div className="container">
             
@@ -56,16 +76,23 @@ class Dashboard extends React.Component {
             </div>
 
             <div id="todos"></div>
+            <div id="todosDone" style={{display:"none"}}></div>
             <div id="space"></div>
 
             <div id="addTodo">
+                <div id="backButton" onClick={this.back}>?</div>
                 <div id="newButton" onClick={this.send}>+</div>
+                <div id="doneButton" onClick={this.done}>!</div>
                 <input type="text" id="send" name="send" placeholder="enter your task here"
                 onChange={(e)=>{this.onChangeHandler(e)}}></input>
 
                 <div id="newButton2" onClick={async()=>{
                     let button = document.getElementById("newButton");
                     let button2 = document.getElementById("newButton2");
+                    let button3 = document.getElementById("doneButton");
+                    let button4 = document.getElementById("backButton");
+                    button3.style.display="flex";
+                    button4.style.display="flex";
                     button.style.display="flex";
                     button2.style.display="none";
                     let send = document.getElementById("send");
@@ -73,9 +100,9 @@ class Dashboard extends React.Component {
                     let no = document.getElementById("no");
                     this.state.no++;
                     no.textContent=this.state.no+" tasks";
-                    await this.props.sendTodo(this.state.send);
+                    await this.props.sendTodo(this.state.send,this.props.backDev);
                     this.state.send="";
-                    await renderTodos();
+                    await renderTodos(this.props.backDev);
                 }} style={{display:"none"}}>+
                 </div>
             </div>
@@ -91,11 +118,14 @@ class Dashboard extends React.Component {
 
 
 
-async function renderTodos(){
-    let json = await getTodo();
+async function renderTodos(backDev){
+    let json = await getTodo(backDev);
         let cont = document.getElementById("todos");
+        let done = document.getElementById("todosDone");
         let t = document.getElementsByClassName("todo");
+        let d = document.getElementsByClassName("done");
         while(t[0]) t[0].remove();
+        while(d[0]) d[0].remove();
         for(let i=json.data.length-1; i>=0; i--){
             if(!json.data[i].done){
                 let todo = document.createElement("div");
@@ -103,7 +133,7 @@ async function renderTodos(){
                 check.onclick=async function(){
                     check.nextSibling.style.textDecoration="line-through";
                     check.style.backgroundColor="rgb(212, 0, 255)";
-                   await fetch("https://todoappfr.herokuapp.com/deltodo",{
+                   await fetch(backDev+"deltodo",{
                         method:"POST",
                         headers:{
                             'Content-Type':'application/json',
@@ -123,12 +153,23 @@ async function renderTodos(){
                 todo.appendChild(p);
                 cont.appendChild(todo);
             }
+            else{
+                let todo = document.createElement("div");
+                let check = document.createElement("div");
+                check.classList.add("check");
+                todo.classList.add("todo");
+                todo.appendChild(check);
+                let p = document.createElement("p");
+                p.textContent = json.data[i].todo;
+                todo.appendChild(p);
+                done.appendChild(todo);
+            }
     }
     return json;
 }
 
-async function getTodo(){
-    const response = await fetch("https://todoappfr.herokuapp.com/gettodo" , {
+async function getTodo(backDev){
+    const response = await fetch(backDev+"gettodo" , {
         method:"POST",
         headers:{
             'Content-Type':'application/json',

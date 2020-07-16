@@ -36,7 +36,7 @@
     /* background-color: red; */
 }
 
-.todo{
+.todo,.done{
     width: 100vw;
     min-height: 10vh;
     display: flex;
@@ -83,6 +83,34 @@ p::-webkit-scrollbar {
     align-items: center;
     /* display: none; */
 }
+#doneButton{
+    width: 7vh;
+    height: 7vh;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 20%;
+    background-color: white;
+    color:rgb(212, 0, 255);
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15vw;
+}
+#backButton{
+    width: 7vh;
+    height: 7vh;
+    border: solid rgb(212, 0, 255) 5px;
+    border-radius: 20%;
+    background-color: white;
+    color:rgb(212, 0, 255);
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15vw;
+}
 #newButton2{
     width: 10vh;
     height: 10vh;
@@ -98,7 +126,7 @@ p::-webkit-scrollbar {
     /* margin-left: 7vw; */
     /* display: none; */
 }
-#newButton:hover{
+#newButton:hover,#backButton:hover,#doneButton:hover{
     background-color:rgb(212, 0, 255);
     color: white;
 }
@@ -121,7 +149,7 @@ p::-webkit-scrollbar {
 }
 
 @media screen and (min-width:600px){
-    #todos{
+    #todos,.todosDone{
         width: 60vw;
         margin-left: 20vw;
     }
