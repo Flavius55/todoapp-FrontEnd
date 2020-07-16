@@ -18,6 +18,7 @@ class App extends React.Component {
     }
     this.setLoggedToTrue = this.setLoggedToTrue.bind(this);
     this.sendLoginData = this.sendLoginData.bind(this);
+    this.sendRegisterData = this.sendRegisterData.bind(this);
     // this.sendTodo = this.sendTodo.bind(this);
   }
 
